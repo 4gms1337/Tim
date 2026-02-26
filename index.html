@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tim</title>
+
+<style>
+
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+}
+
+/* ===== FOND ===== */
+body {
+  margin: 0;
+  background: url("https://i.pinimg.com/originals/13/32/08/133208e9c9f21391b62caa1514e23643.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #e6f0ff;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Overlay nuit néon */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(5,10,25,0.85), rgba(15,20,40,0.9));
+  z-index: -2;
+}
+
+/* Canvas particules */
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+/* ===== INTRO ===== */
+#intro {
+  position: fixed;
+  inset: 0;
+  background: #05070f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: pointer;
+  transition: opacity 0.8s ease;
+}
+
+#intro h2 {
+  font-size: 28px;
+  text-align: center;
+  padding: 20px;
+  color: #cfd8ff;
+  text-shadow: 0 0 15px #6fa3ff;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* ===== CONTENU ===== */
+#main-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+  padding: 140px 20px 60px;
+  text-align: center;
+}
+
+/* ===== PROFIL ===== */
+.profile-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+}
+
+.profile-container img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 2px solid rgba(150,180,255,0.6);
+  transition: 0.4s;
+}
+
+.profile-container img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #6fa3ff;
+}
+
+.profile-container h1 {
+  font-size: 26px;
+  margin: 0;
+  color: #dbe7ff;
+  animation: glowPulse 3s infinite alternate;
+}
+
+@keyframes glowPulse {
+  from {
+    text-shadow: 0 0 8px #6fa3ff;
+  }
+  to {
+    text-shadow: 0 0 20px #6fa3ff, 0 0 40px #4c7dff;
+  }
+}
+
+/* ===== CARD ===== */
+.buttons-wrapper {
+  max-width: 340px;
+  margin: auto;
+  padding: 25px;
+  border-radius: 20px;
+  background: rgba(30,40,70,0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(120,150,255,0.3);
+  box-shadow: 0 0 30px rgba(100,130,255,0.2);
+}
+
+/* ===== BOUTONS ===== */
+a {
+  display: block;
+  margin: 15px auto;
+  padding: 14px 0;
+  width: 100%;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
+  color: white;
+
+  /* Couleur uniforme des boutons (dégradé bleu-violet néon) */
+  background: linear-gradient(45deg, #6fa3ff, #4c7dff);
+  border: 1px solid rgba(100,130,255,0.4);
+  text-shadow: 0 0 4px rgba(111,163,255,0.7);
+}
+
+a.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Effet glow au survol, pulsation */
+a:hover {
+  transform: translateY(-3px);
+  animation: buttonGlow 1.5s infinite alternate;
+}
+
+@keyframes buttonGlow {
+  from {
+    box-shadow: 0 0 10px #6fa3ff, 0 0 20px #4c7dff;
+  }
+  to {
+    box-shadow: 0 0 20px #6fa3ff, 0 0 40px #4c7dff;
+  }
+}
+
+/* ===== COMPTEUR ===== */
+#view-counter {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  font-size: 13px;
+  opacity: 0.8;
+  color: #cfd8ff;
+  text-shadow: 0 0 5px #6fa3ff;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 480px) {
+
+  .profile-container img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .profile-container h1 {
+    font-size: 22px;
+  }
+
+  #main-content {
+    padding-top: 120px;
+  }
+
+}
+
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div id="intro">
+  <h2>Click to enter...</h2>
+</div>
+
+<div id="main-content">
+
+<div class="profile-container">
+  <img src="https://cdn.discordapp.com/attachments/1455760547571306580/1476670986437922898/37f51b23f76eee9733893dec3c0f2293.jpg?ex=69a1f886&is=69a0a706&hm=6166b8b48956a3953e1ee4c9fb9de74db0b78868565454f2dd06b93df245a74a&" alt="Photo de Tim">
+  <h1>Tim</h1>
+</div>
+
+<div class="buttons-wrapper">
+  <a href="https://www.instagram.com/t.b_85?igsh=MTBuc2s4eWZ3cHI2bw==" target="_blank" rel="noopener noreferrer">Instagram</a>
+  <a href="https://www.roblox.com/share?code=9d4a15e517aaba48af5fec7384c35f41&type=Profile&source=ProfileShare&stamp=1772059733330" target="_blank" rel="noopener noreferrer">Roblox</a>
+  <a href="https://www.tiktok.com/@tb.85000?_r=1&_t=ZN-94EB3HpVAlq" target="_blank" rel="noopener noreferrer">TikTok</a>
+  <!-- Nouveau bouton Contact -->
+  <a href="https://discord.gg/vCftbMKC" target="_blank" rel="noopener noreferrer">Contact</a>
+</div>
+
+</div>
+
+<div id="view-counter">
+  👁 <span id="views">0</span>
+</div>
+
+<script>
+
+/* INTRO */
+const intro = document.getElementById("intro");
+const main = document.getElementById("main-content");
+const buttons = main.querySelectorAll("a");
+
+function showContent() {
+  intro.style.opacity = "0";
+  setTimeout(() => {
+    intro.style.display = "none";
+    main.style.opacity = "1";
+    main.style.transform = "translateY(0)";
+    buttons.forEach((btn, i) => {
+      setTimeout(() => btn.classList.add("fade-in"), i * 150);
+    });
+  }, 800);
+}
+
+intro.addEventListener("click", showContent);
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Enter" || e.code === "Space") showContent();
+});
+
+/* COMPTEUR */
+let views = localStorage.getItem("page_views");
+views = views ? parseInt(views) + 1 : 1;
+localStorage.setItem("page_views", views);
+document.getElementById("views").textContent = views;
+
+/* PARTICULES */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 40; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random() * 1.5,
+    speedY: Math.random() * 0.5 + 0.2
+  });
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach(p => {
+    p.y += p.speedY;
+    if (p.y > canvas.height) p.y = 0;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(180,200,255,0.3)";
+    ctx.fill();
+  });
+
+  requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+</script>
+
+</body>
+</html>
